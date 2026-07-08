@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('hq-8f92a1/', admin.site.urls),  # مسار سري وصعب التخمين للحماية
     path('', include('core.urls')),
 ]
 
