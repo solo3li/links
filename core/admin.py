@@ -49,3 +49,7 @@ class LinkAdmin(admin.ModelAdmin):
         if db_field.name in ['bg_color', 'text_color']:
             kwargs['widget'] = ColorWidget()
         return super().formfield_for_dbfield(db_field, request, **kwargs)
+
+admin.site.site_header = "ادمن الروابط"
+admin.site.site_title = "ادمن الروابط"
+admin.site.index_title = "إدارة النظام"
