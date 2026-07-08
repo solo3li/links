@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {% if profile %}{{ profile.name }} | الروابط{% else %}الروابط{% endif %}
+{% endblock title %}
+
+{% block content %}
+<div class="profile-section">
+    {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="Profile Avatar" class="profile-avatar">
+    {% else %}
+        <!-- Default Avatar (Placeholder) -->
+        <div class="profile-avatar-placeholder">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    {% endif %}
+    
+    <h1 class="profile-name">{% if profile %}{{ profile.name }}{% else %}اسم المستخدم{% endif %}</h1>
+    
+    {% if profile.bio %}
+        <p class="profile-bio">{{ profile.bio }}</p>
+    {% endif %}
+</div>
+
+<div class="links-container">
+    {% for link in links %}
+        <a href="{{ link.url }}" class="link-item {% if link.is_highlighted %}highlighted{% endif %}" target="_blank" rel="noopener noreferrer" style="{% if link.bg_color %}background: {{ link.bg_color }}; border-color: {{ link.bg_color }};{% endif %} {% if link.text_color %}color: {{ link.text_color }};{% endif %}">
+            {% if link.final_icon %}
+                <i class="{{ link.final_icon }} link-icon"></i>
+            {% endif %}
+            <span class="link-title">{{ link.title }}</span>
+        </a>
+    {% empty %}
+        <p class="no-links">لم يتم إضافة روابط بعد.</p>
+    {% endfor %}
+</div>
+
+<footer class="footer">
+    <p>Powered by <a href="#">Linktree Clone</a></p>
+</footer>
+{% endblock content %}
